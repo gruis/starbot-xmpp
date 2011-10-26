@@ -1,0 +1,6 @@
+---
+xmpp:rooms:
+- !ruby/object:Jabber::JID
+  resource: !!null 
+  domain: conference.bs.icaleb.org
+  node: ferengi
