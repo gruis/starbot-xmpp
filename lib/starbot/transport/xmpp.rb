@@ -7,6 +7,7 @@ require 'xmpp4r/muc'
 require 'xmpp4r/roster'
 
 require 'starbot/ext/xmpp4r/message'
+require 'starbot/encoding_patch.rb'
 
 #Jabber::debug = true
 
@@ -43,8 +44,8 @@ class Starbot
         watch_for_subscribers
         # It seems like jabber sends us the roster on connect, so we probably
         # don't need to get it manually here
-        #@roster.get_roster 
-        
+        #@roster.get_roster
+
         rejoin_rooms
         watch_msgs
       end # initialize(opts = {})
@@ -144,10 +145,9 @@ class Starbot
             remembered_rooms = @bot.recal('xmpp:rooms', [])
             @bot.remember('xmpp:rooms', remembered_rooms.push(room.id)) unless remembered_rooms.include?(room.id)
           end #  synchronize
-          
+
           @rooms[room.id] = muc
         end #  |muc|
-        
         room
       end # join_room(room)
       
